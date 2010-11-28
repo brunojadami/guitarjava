@@ -123,11 +123,22 @@ public class Menu extends javax.swing.JFrame
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
 
-        if (playingMusic != null)
-            playingMusic.stop();
-
         for (WindowListener gui : getWindowListeners())
             gui.windowClosed(new WindowEvent(this, CLOSED_TO_REQUEST_REFRESH));
+
+        if (playingMusic != null)
+        {
+            Thread t = new Thread()
+            {
+                @Override
+                public void run()
+                {
+                    playingMusic.stop();
+                }
+            };
+            
+            t.start();
+        }
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void musicsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_musicsListValueChanged
@@ -255,6 +266,11 @@ public class Menu extends javax.swing.JFrame
         {
             @Override
             public void run()
+            {
+                play();
+            }
+
+            private synchronized void play()
             {
                 if (playingMusic != null)
                 {
