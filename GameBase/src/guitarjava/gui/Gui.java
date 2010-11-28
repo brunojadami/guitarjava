@@ -74,10 +74,14 @@ public class Gui extends WindowAdapter
             {
                 String player = JOptionPane.showInputDialog
 			("You beat this music highscore! Enter your name!");
-		boolean success = gameEngine.saveHighScore(player);
 
-                if (!success)
-                    JOptionPane.showMessageDialog(menuLoading, "Could not save the highscore!");
+                if (player != null)
+                {
+                    boolean success = gameEngine.saveHighScore(player);
+
+                    if (!success)
+                        JOptionPane.showMessageDialog(menuLoading, "Could not save the highscore!");
+                }
             }
             createMenuLoading();
         }
