@@ -39,7 +39,15 @@ public class MenuLoading extends Loading
             @Override
             public void run()
             {
-                loadMusics();
+                try
+                {
+                    loadMusics();
+                }
+                catch (Exception e)
+                {
+                    ErrorWindow error = new ErrorWindow(e, MenuLoading.this, "http://www.google.com");
+                    error.showWindow();
+                }
 
                 for (WindowListener gui : getWindowListeners())
                     gui.windowClosed(new WindowEvent(MenuLoading.this, 0));
@@ -61,7 +69,7 @@ public class MenuLoading extends Loading
     /**
      * Reads the musics from the disk and creates the music map.
      */
-    private void loadMusics()
+    private void loadMusics() throws Exception
     {
         File folder = new File("musics/xml/");
 
