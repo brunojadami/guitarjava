@@ -253,10 +253,15 @@ public class Music
 
         this.silent = silent;
 
-        if (silent)
-            return player.setGain(-MUSIC_GAIN);
+        if (player != null)
+        {
+            if (silent)
+                return player.setGain(-MUSIC_GAIN);
+            else
+                return player.setGain(0);
+        }
         else
-            return player.setGain(0);
+            return true;
     }
 
     /**
@@ -264,7 +269,10 @@ public class Music
      */
     public int getCurrentPosition()
     {
-        return player.getCurrentPosition();
+        if (player != null)
+            return player.getCurrentPosition();
+        else
+            return 0;
     }
 
     /**
@@ -272,7 +280,10 @@ public class Music
      */
     public int getLastPosition()
     {
-        return player.getLastPosition();
+        if (player != null)
+            return player.getLastPosition();
+        else
+            return 0;
     }
 
     /**
