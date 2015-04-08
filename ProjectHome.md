@@ -1,0 +1,3 @@
+The game is based on Guitar Hero, playable on the web browser.
+
+It is being developed for 2 students of ICMC (USP) / Brazil. It is a project for the OOP classes, using Java...
